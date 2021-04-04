@@ -2,8 +2,7 @@
 #Virginia region
 DEBIAN_FRONTEND=noninteractive
 DEB_BUILD_DEPS="build-essential python3-dev python3-pip python3-setuptools software-properties-common libgit2-dev dirmngr libgmp3-dev libmpfr-dev"
-#Install OpenBLAS and other tools
-DEB_PACKAGES="sudo nano less time git nodejs curl wget htop gfortran linux-tools-$(uname -r) linux-tools-generic libopenblas-dev"
+DEB_PACKAGES="sudo nano less time git nodejs curl wget htop graphviz"
 PIP_PACKAGES="numpy scipy matplotlib pandas seaborn sympy cvxpy pytest dask distributed bokeh jupyter-book networkx ortools line_profiler memory_profiler psutil guppy3 cython numba graphviz jedi==0.17.2 awscli"
 R_KEY="E298A3A825C0D65DFD57CBB651716619E084DAB9"
 R_DEB_BUILD_DEPS="focal-cran40 r-base libssl-dev libxml2-dev libcurl4-openssl-dev"
@@ -56,9 +55,5 @@ sudo cp -r julia-1.6.0/* /usr/local/julia-1.6.0/
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add("IJulia")' && \
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
-
-#launch jupyter lab
-
-/home/$USER/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/$USER/.jupyter/jupyter_notebook_config.py &
 
 EOF

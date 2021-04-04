@@ -65,8 +65,4 @@ sudo cp -r julia-1.6.0/* /usr/local/julia-1.6.0/
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
 
-#launch jupyter lab
-
-/home/$USER/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser --config=/home/$USER/.jupyter/jupyter_notebook_config.py &
-
 EOF

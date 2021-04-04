@@ -19,7 +19,7 @@ apt-get update && export $DEBIAN_FRONTEND && apt-get install -y tzdata
 apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 install --upgrade pip
 
 # Install nodejs deps
-curl -sL https://deb.nodesource.com/setup_12.x | -E bash - && apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
 
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $R_KEY && \
 add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" && \

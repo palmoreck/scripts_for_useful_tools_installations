@@ -50,10 +50,16 @@ echo "export LD_LIBRARY_PATH=/usr/local/$CUDA_VERSION/lib64${LD_LIBRARY_PATH:+:$
 
 sudo -H --preserve-env -u $USER bash << EOF
 export PATH=/home/$USER/.local/bin:$PATH
+
+#installation of jupyter outputs next:
+#ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+#launchpadlib 1.10.13 requires testresources, which is not installed.
+
+pip3 install --user $PIP_PACKAGES
+
 pip3 install --user jupyter jupyterlab==$JUPYTERLAB_VERSION
 jupyter notebook --generate-config && sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/$USER/.jupyter/jupyter_notebook_config.py
 
-pip3 install --user $PIP_PACKAGES
 
 
 EOF

@@ -28,6 +28,8 @@ apt-get install -yt $R_DEB_BUILD_DEPS
 #install next packages for ubuntu user
 
 sudo -H --preserve-env -u $USER bash << EOF
+
+#NOTE: Is better to install first PIP_PACKAGES and then JUPYTER
 export PATH=/home/$USER/.local/bin:$PATH
 
 pip3 install --user jupyter jupyterlab==$JUPYTERLAB_VERSION

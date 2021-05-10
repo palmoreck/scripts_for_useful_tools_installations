@@ -4,7 +4,7 @@
 #Virginia region
 DEBIAN_FRONTEND=noninteractive
 DEB_BUILD_DEPS="build-essential python3-dev python3-pip python3-setuptools software-properties-common"
-DEB_PACKAGES="sudo nano less time git curl wget htop graphviz gfortran"
+DEB_PACKAGES="sudo nano less time git curl wget htop graphviz gfortran nvtop"
 PIP_PACKAGES="numpy scipy matplotlib pandas testresources seaborn sympy cvxpy pytest dask distributed bokeh networkx ortools cython numba graphviz jedi==0.17.2 awscli cupy-cuda112"
 USER=ubuntu
 JUPYTERLAB_VERSION=3.0.0

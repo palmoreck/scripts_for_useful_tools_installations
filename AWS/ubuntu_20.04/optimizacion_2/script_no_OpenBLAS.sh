@@ -34,7 +34,7 @@ export PATH=/home/$USER/.local/bin:$PATH
 
 pip3 install --user jupyter jupyterlab==$JUPYTERLAB_VERSION
 
-jupyter notebook --generate-config && sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/$USER/.jupyter/jupyter_notebook_config.py
+~/.local/bin/jupyter notebook --generate-config && sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/$USER/.jupyter/jupyter_notebook_config.py
 
 pip3 install --user $PIP_PACKAGES
 
@@ -60,5 +60,7 @@ sudo cp -r julia-1.6.0/* /usr/local/julia-1.6.0/
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add("IJulia")' && \
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
 /usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
+
+~/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser
 
 EOF

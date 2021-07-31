@@ -4,7 +4,7 @@ DEBIAN_FRONTEND=noninteractive
 DEB_BUILD_DEPS="build-essential python3-dev python3-pip python3-setuptools software-properties-common libgit2-dev dirmngr libgmp3-dev libmpfr-dev"
 #Install OpenBLAS and other tools
 DEB_PACKAGES="sudo nano less time git curl wget htop graphviz gfortran linux-tools-$(uname -r) linux-tools-generic libopenblas-dev"
-PIP_PACKAGES="matplotlib pandas seaborn sympy cvxpy pytest dask distributed bokeh jupyter-book networkx ortools line_profiler memory_profiler psutil guppy3 cython numba graphviz jedi==0.17.2 awscli"
+PIP_PACKAGES="numpy scipy matplotlib pandas seaborn sympy cvxpy pytest dask distributed bokeh jupyter-book networkx ortools line_profiler memory_profiler psutil guppy3 cython numba graphviz jedi==0.17.2 awscli"
 R_KEY="E298A3A825C0D65DFD57CBB651716619E084DAB9"
 R_DEB_BUILD_DEPS="focal-cran40 r-base libssl-dev libxml2-dev libcurl4-openssl-dev"
 USER=ubuntu
@@ -37,11 +37,6 @@ export PATH=/home/$USER/.local/bin:$PATH
 pip3 install --user jupyter jupyterlab==$JUPYTERLAB_VERSION
 
 ~/.local/bin/jupyter notebook --generate-config && sed -i "s/# c.NotebookApp.password = .*/c.NotebookApp.password = u'sha1:115e429a919f:21911277af52f3e7a8b59380804140d9ef3e2380'/" /home/$USER/.jupyter/jupyter_notebook_config.py
-
-#install numpy and scipy using OpenBLAS installation
-
-pip3 install --user numpy --no-binary numpy
-pip3 install --user scipy --no-binary scipy
 
 pip3 install --user $PIP_PACKAGES
 

@@ -63,7 +63,7 @@ sudo cp -r julia-$julia_version_2/* /usr/local/julia-$julia_version_2/
 /usr/local/julia-$julia_version_2/bin/julia  -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
 /usr/local/julia-$julia_version_2/bin/julia  -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
 
-echo 'export PATH=/usr/local/julia-$julia-version/bin/:$PATH' >> $HOME/.bashrc
+sudo echo 'export PATH=/usr/local/julia-$julia-version/bin/:$PATH' >> $HOME/.bashrc
 
 ~/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser
 

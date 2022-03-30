@@ -8,7 +8,7 @@ PIP_PACKAGES="numpy scipy matplotlib pandas seaborn sympy cvxpy pytest dask dist
 R_KEY="E298A3A825C0D65DFD57CBB651716619E084DAB9"
 R_DEB_BUILD_DEPS="focal-cran40 r-base libssl-dev libxml2-dev libcurl4-openssl-dev"
 USER=ubuntu
-JUPYTERLAB_VERSION=3.0.0
+JUPYTERLAB_VERSION=3.2.8
 LANG=C.UTF-8
 LC_ALL=C.UTF-8
 R_SITE_LIBRARY="/usr/local/lib/R/site-library"
@@ -19,7 +19,7 @@ apt-get update && export $DEBIAN_FRONTEND && apt-get install -y tzdata
 apt-get update && apt-get install -y $DEB_BUILD_DEPS $DEB_PACKAGES && pip3 install --upgrade pip
 
 # Install nodejs deps
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash - && apt-get install -y nodejs
+curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash - && apt-get install -y nodejs
 
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $R_KEY && \
 add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/" && \
@@ -51,17 +51,19 @@ R -e 'devtools::install_github("IRkernel/IRkernel")' && \
 R -e 'IRkernel::installspec()' #or:R -e 'IRkernel::installspec(user=FALSE)'
 
 #julia kernel in jupyter
-
-sudo mkdir /usr/local/julia-1.6.0
+julia_version=1.7 && julia_version_2=1.7.1
+sudo mkdir /usr/local/julia-$julia_version_2
 cd
-wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz
-tar zxvf julia-1.6.0-linux-x86_64.tar.gz
+wget https://julialang-s3.julialang.org/bin/linux/x64/$julia_version/julia-$julia_version_2-linux-x86_64.tar.gz 
+tar zxvf julia-$julia_version_2-linux-x86_64.tar.gz
 
-sudo cp -r julia-1.6.0/* /usr/local/julia-1.6.0/ 
+sudo cp -r julia-$julia_version_2/* /usr/local/julia-$julia_version_2/
 
-/usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add("IJulia")' && \
-/usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
-/usr/local/julia-1.6.0/bin/julia -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
+/usr/local/julia-$julia_version_2/bin/julia -e 'using Pkg;Pkg.add("IJulia")' && \
+/usr/local/julia-$julia_version_2/bin/julia  -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
+/usr/local/julia-$julia_version_2/bin/julia  -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
+
+echo 'export PATH=/usr/local/julia-$julia-version/bin/:$PATH' >> $HOME/.bashrc
 
 ~/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser
 

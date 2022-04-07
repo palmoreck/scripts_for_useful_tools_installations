@@ -54,7 +54,12 @@ R -e 'IRkernel::installspec()' #or:R -e 'IRkernel::installspec(user=FALSE)'
 julia_version=1.7 && julia_version_2=1.7.1
 sudo mkdir /usr/local/julia-$julia_version_2
 cd
-wget https://julialang-s3.julialang.org/bin/linux/x64/$julia_version/julia-$julia_version_2-linux-x86_64.tar.gz 
+while [ ! -f julia-$julia_version_2-linux-x86_64.tar.gz ]
+do
+  wget https://julialang-s3.julialang.org/bin/linux/x64/$julia_version/julia-$julia_version_2-linux-x86_64.tar.gz
+  sleep 0.5
+  echo "If doesn't exist tar then will download julia $julia_version"
+done
 tar zxvf julia-$julia_version_2-linux-x86_64.tar.gz
 
 sudo cp -r julia-$julia_version_2/* /usr/local/julia-$julia_version_2/

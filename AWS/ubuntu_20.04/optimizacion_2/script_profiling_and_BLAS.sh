@@ -56,7 +56,7 @@ sudo mkdir /usr/local/julia-$julia_version_2
 cd
 while [ ! -f julia-$julia_version_2-linux-x86_64.tar.gz ]
 do
-  wget https://julialang-s3.julialang.org/bin/linux/x64/$julia_version/julia-$julia_version_2-linux-x86_64.tar.gz
+  wget https://julialang-s3.julialang.org/bin/linux/x64/$(echo $julia_version)/julia-$(echo $julia_version_2)-linux-x86_64.tar.gz
   sleep 0.5
   echo "If doesn't exist tar then will download julia $julia_version"
 done

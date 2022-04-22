@@ -12,6 +12,8 @@ LANG=C.UTF-8
 LC_ALL=C.UTF-8
 R_SITE_LIBRARY="/usr/local/lib/R/site-library"
 R_PACKAGES="\"repr IRdisplay evaluate crayon pbdZMQ devtools uuid digest CVXR tidyverse tictoc microbenchmark\""
+JULIA_VERSION=1.7
+JULIA_VERSION_2=1.7.1
 
 apt-get update && export $DEBIAN_FRONTEND && apt-get install -y tzdata
 
@@ -58,15 +60,15 @@ do
   sleep 0.5
   echo "If doesn't exist tar then will download julia $julia_version"
 done
-tar zxvf julia-$julia_version_2-linux-x86_64.tar.gz
+tar zxvf julia-$JULIA_VERSION_2-linux-x86_64.tar.gz
 
-sudo cp -r julia-$julia_version_2/* /usr/local/julia-$julia_version_2/
+sudo cp -r julia-$JULIA_VERSION_2/* /usr/local/julia-$JULIA_VERSION_2/
 
-/usr/local/julia-$julia_version_2/bin/julia -e 'using Pkg;Pkg.add("IJulia")' && \
-/usr/local/julia-$julia_version_2/bin/julia  -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
-/usr/local/julia-$julia_version_2/bin/julia  -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
+/usr/local/julia-$JULIA_VERSION_2/bin/julia -e 'using Pkg;Pkg.add("IJulia")' && \
+/usr/local/julia-$JULIA_VERSION_2/bin/julia  -e 'using Pkg;Pkg.add(Pkg.PackageSpec(name="JuMP", rev="master"))' && \
+/usr/local/julia-$JULIA_VERSION_2/bin/julia  -e 'using Pkg;Pkg.add("ECOS");Pkg.add("OSQP");Pkg.add("SCS");Pkg.add("GLPK");Pkg.add("Optim")'
 
-sudo echo 'export PATH=/usr/local/julia-$julia-version/bin/:$PATH' >> $HOME/.bashrc
+sudo echo 'export PATH=/usr/local/julia-$JULIA_VERSION/bin/:$PATH' >> $HOME/.bashrc
 
 ~/.local/bin/jupyter lab --ip=0.0.0.0 --no-browser
 
